@@ -4,12 +4,13 @@ sidebarDepth: 0
 title: vue/single-v-slot-style
 description: enforce a specific style for single v-slot
 ---
+
 # vue/single-v-slot-style
 
 > enforce a specific style for single v-slot
 
 - :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> _**This rule has not been released yet.**_ </badge>
-- :wrench: The "--fix" option on the command line can automatically fix some of the problems reported by this rule.
+- :wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fix-problems) can automatically fix some of the problems reported by this rule.
 
 ## :book: Rule Details
 
@@ -25,14 +26,14 @@ If a component has a single `v-slot` directive (commonly shortened as `#`), it's
 
 This rule can enforce a specific style in these cases.
 
-<eslint-code-block :rules="{'vue/single-v-slot-style': ['error', 'without-wrapper']}">
+<eslint-code-block fix :rules="{'vue/single-v-slot-style': ['error', 'without-wrapper']}">
 
 ```vue
 <template>
-  <!-- GOOD -->
+  <!-- ✓ GOOD -->
   <my-component #default>...</my-component>
 
-  <!-- BAD -->
+  <!-- ✗ BAD -->
   <my-component>
     <template #default>...</template>
   </my-component>
@@ -60,16 +61,16 @@ This rule can enforce a specific style in these cases.
 - `"without-wrapper"` (default) ... Enforces that the `v-slot` directive is placed directly on the component tag, removing the unnecessary `<template>` wrapper.
 - `"with-wrapper"` ... Enforces that the `v-slot` directive is placed on a `<template>` tag wrapper.
 
-<eslint-code-block :rules="{'vue/single-v-slot-style': ['error', 'with-wrapper']}">
+<eslint-code-block fix :rules="{'vue/single-v-slot-style': ['error', 'with-wrapper']}">
 
 ```vue
 <template>
-  <!-- GOOD -->
+  <!-- ✓ GOOD -->
   <my-component>
     <template #default>...</template>
   </my-component>
 
-  <!-- BAD -->
+  <!-- ✗ BAD -->
   <my-component #default>...</my-component>
 </template>
 ```
@@ -121,3 +122,8 @@ Default is `false`. If `true`, comments inside the component but outside the slo
 
 - [Vue.js Guide - Named Slots](https://vuejs.org/guide/components/slots.html#named-slots)
 - [Vue.js Guide - Scoped Slots](https://vuejs.org/guide/components/slots.html#scoped-slots)
+
+## :mag: Implementation
+
+- [Rule source](https://github.com/vuejs/eslint-plugin-vue/blob/master/lib/rules/single-v-slot-style.js)
+- [Test source](https://github.com/vuejs/eslint-plugin-vue/blob/master/tests/lib/rules/single-v-slot-style.js)
